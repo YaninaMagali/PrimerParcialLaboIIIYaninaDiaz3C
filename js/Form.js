@@ -1,9 +1,7 @@
 function AgregarOptionADropdown(opciones)
 {
     var dropdown = document.getElementById("id_select_localidad");
-    console.log(dropdown);
     opciones.forEach(element => {
-        console.log(element.nombre);
         var opt = document.createElement('option');
         opt.value = [element.nombre];
         opt.innerHTML = [element.nombre];
@@ -21,7 +19,6 @@ function GetLocalidades()
         {
             var auxData = this.response;
             var localidades = JSON.parse(auxData);
-            // console.log(localidades);
             AgregarOptionADropdown(localidades);
         }
     }

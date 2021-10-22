@@ -20,15 +20,30 @@ function ObtenerDataPorFila(event)
 
 function PrecargarDataPersonaEnForm(dataPersona) 
 {
-    //GetLocalidades();
+    console.log(dataPersona[2].textContent);
     nombre = document.getElementById("id_input_nombre");
     apellido = document.getElementById("id_input_apellido");
     localidad = document.getElementById("id_select_localidad");
     sexo = document.getElementsByClassName("radio");
     nombre.value = dataPersona[0].textContent;
     apellido.value = dataPersona[1].textContent;
-    localidad.value = dataPersona[2].textContent;
+    //country.options[country.options.selectedIndex].selected = true;
+    //localidad.options[dataPersona[2].textContent].selected = true;
+    //localidad.value = dataPersona[2].textContent;
+    //localidad.options['Barracas'].selected = true;
+
     sexo.value = dataPersona[3].textContent;
+    if(sexo.value == 'Male')
+    {
+        document.getElementById("id_sexoM").checked = true;
+    }
+    else
+    {
+        document.getElementById("id_sexoF").checked = true;
+    }
+
+
+
 }
 
 function AgregarTablaPersonasGet()
@@ -48,8 +63,8 @@ function AgregarTablaPersonasGet()
                 r.addEventListener("click", (e)=>{
                     CrearModal();
                     var data = ObtenerDataPorFila(e);
-                    GetLocalidades();
                     PrecargarDataPersonaEnForm(data); 
+                    GetLocalidades();
                 });
             }
 
