@@ -23,7 +23,7 @@
 .Inputs
 {
     padding: 3px;
-    border-style: none;
+    border-style:solid;
     border-radius: 5px;
     font:initial;
     position:absolute;

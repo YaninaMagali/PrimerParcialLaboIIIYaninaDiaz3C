@@ -8,7 +8,57 @@ function AgregarOptionADropdown(opciones)
         dropdown.appendChild(opt);
     })
 }
+function GetFormData(elementId) 
+{
+    return document.getElementById(elementId).value;
+}
 
+function GetPersonaData()
+{
+    var nombre = GetFormData("id_input_nombre");
+    var apellido  = GetFormData("id_input_apellido");
+    var localidad = GetFormData("id_select_localidad");
+    var sexo = GetFormData("id_sexoM");
+
+    return [nombre, apellido, localidad, sexo];
+}
+
+function ValidarNombre()
+{
+    var validacion = true;
+    var nombre = GetFormData("id_input_nombre")
+    if(nombre.length<4)
+    {
+        document.getElementById('id_input_nombre').style.borderColor = "red";
+        validacion = false;
+    }
+    return validacion;
+}
+
+function ValidarApellido()
+{
+    var validacion = true;
+    var nombre = GetFormData("id_input_apellido")
+    if(nombre.length<4)
+    {
+        console.log("ValidarApellido");
+        document.getElementById('id_input_apellido').style.borderColor = "red";
+        var validacion = false;
+    }
+    return validacion;
+}
+
+function ValidarData()
+{
+    var resultado = true;
+
+    if(!ValidarNombre() || !ValidarApellido())
+    {
+        resultado = false;
+    }
+         
+    return resultado;
+}
 
 function GetLocalidades()
 {
@@ -26,3 +76,32 @@ function GetLocalidades()
     http.setRequestHeader('Content-type', 'application/json');
     http.send();
 }
+
+
+function PostModificarPersona()
+{
+    var persona = GetPersonaData();
+    if(persona != null)
+    {
+        var http = new XMLHttpRequest();
+
+        http.onreadystatechange = function()
+        {
+            if(this.readyState == 4 && this.status == 200)
+            {
+                if(ValidarData())
+                {
+                    OcultarModal();
+                }
+                // else
+                // {
+                //     console.log("cambiar estilos input");
+                // }
+            }
+            
+        }
+        http.open("POST", "http://localhost:3000/editar", true);
+        var auxData = {'nombre': persona[0], 'apellido': persona[1], 'localidad': persona[2], 'sexo': persona[3]};
+        http.setRequestHeader('Content-type', 'application/json');
+        http.send(JSON.stringify(auxData));
+}}

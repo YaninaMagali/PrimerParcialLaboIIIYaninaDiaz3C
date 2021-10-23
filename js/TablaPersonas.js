@@ -27,7 +27,6 @@ function PrecargarDataPersonaEnForm(dataPersona)
     sexo = document.getElementsByClassName("radio");
     nombre.value = dataPersona[0].textContent;
     apellido.value = dataPersona[1].textContent;
-    //country.options[country.options.selectedIndex].selected = true;
     //localidad.options[dataPersona[2].textContent].selected = true;
     //localidad.value = dataPersona[2].textContent;
     //localidad.options['Barracas'].selected = true;
@@ -42,7 +41,9 @@ function PrecargarDataPersonaEnForm(dataPersona)
         document.getElementById("id_sexoF").checked = true;
     }
 
-
+    var btnModificar = document.getElementById("id_button_modificar");
+    btnModificar.addEventListener("click", PostModificarPersona);
+    
 
 }
 
