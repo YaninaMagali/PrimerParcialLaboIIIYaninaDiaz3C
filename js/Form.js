@@ -93,10 +93,6 @@ function PostModificarPersona()
                 {
                     OcultarModal();
                 }
-                // else
-                // {
-                //     console.log("cambiar estilos input");
-                // }
             }
             
         }
